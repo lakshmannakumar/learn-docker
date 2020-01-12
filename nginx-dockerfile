@@ -1,0 +1,20 @@
+# use base image.
+FROM sloopstash/amazonlinux:v1
+
+# install nginx.
+RUN set -x \
+  && wget https://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-1.16.0-1.el7.ngx.x86_64.rpm --quiet \
+  && yum install -y nginx-1.16.0-1.el7.ngx.x86_64.rpm \
+  && rm nginx-1.16.0-1.el7.ngx.x86_64.rpm
+
+#Start nginx server.
+
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+
